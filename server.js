@@ -35,19 +35,3 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
 });
-
-/// Health check endpoint
-app.get("/health", (req, res) => {
-    res.status(200).json({
-        status: "ok",
-        uptime: process.uptime(),
-        timestamp: Date.now()
-    });
-});
-
-// 404 handler (must come after all valid routes)
-app.use((req, res, next) => {
-    res.status(404).json({
-        message: "The requested resource was not found!",
-    });
-});
