@@ -35,3 +35,12 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
 });
+
+// Health check endpoint
+app.get("/health", (req, res) => {
+    res.status(200).json({
+        status: "ok",
+        uptime: process.uptime(),
+        timestamp: Date.now()
+    });
+});
